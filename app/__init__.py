@@ -23,4 +23,26 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+
+    @app.route('/kpi')
+    def index_kpi():
+        return "kpi"
+
+    @app.route('/kpi/<int:id>')
+    def show_kpi(id):
+        return "kpi %d" % id
+
+    @app.route('/kpi/statistics')
+    def index_kpi_statistics():
+        return "statistics"
+
+    @app.route('/schedule/', methods=['GET', 'POST'])
+    def index_job():
+        return "jobs"
+
+    def create_job():
+        job_name = request.args.get(job_name)
+        return job_name
+
+
     return app
