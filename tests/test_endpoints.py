@@ -3,7 +3,7 @@ import tempfile
 
 import pytest
 
-from app import create_app
+from app.app import create_app
 
 
 def test_index_kpi(client):

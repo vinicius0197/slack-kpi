@@ -3,7 +3,7 @@ import tempfile
 
 import pytest
 
-from app import create_app
+from app.app import create_app
 
 
 @pytest.fixture
@@ -21,4 +21,3 @@ def app():
 def client(app):
     """A test client for the app."""
     return app.test_client()
-
