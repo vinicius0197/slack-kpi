@@ -1,4 +1,5 @@
-import os, json
+import os
+import json
 import re
 import yaml
 import gspread
@@ -11,6 +12,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 # Dito isso, Cada operação irá requisitar a api do sheets
 # Retorna objeto com indicadores, valores e metas, formatado ou não
 
+
 def return_sheet(format_value='FORMATTED_VALUE'):
     """
         Use credentials to create a client to interact with the Google Drive API
@@ -19,7 +21,7 @@ def return_sheet(format_value='FORMATTED_VALUE'):
     """
 
     path = os.getcwd()
-    secret_json_path = path + '/app/api/client_secret.json'
+    secret_json_path = path + '/app/common/client_secret.json'
     with open('config.yml') as f:
         config = yaml.safe_load(f)
 
@@ -50,11 +52,13 @@ def return_sheet(format_value='FORMATTED_VALUE'):
 
     return indicadores, values, goals
 
+
 def normalize_string(txt):
     """
         Helper function to normalize strings
     """
     return normalize('NFKD', txt).encode('ASCII', 'ignore').decode('ASCII')
+
 
 def format_data(indicadores, values, goals):
     """
@@ -75,6 +79,7 @@ def format_data(indicadores, values, goals):
     dictionary = [dict(x) for x in zip(cell_tuple, ids)]
     return dictionary
 
+
 def all_kpi():
     """
         Returns object with all kpi's, without ID
@@ -83,6 +88,7 @@ def all_kpi():
     """
     data = format_data(*return_sheet())
     return {k: v for x in data for k, v in x.items() if k != "id"}
+
 
 def match_kpi(name):
     """
