@@ -18,3 +18,13 @@ sheet_url: LINK_PARA_PLANILHA_GOOGLE_SHEETS
 
 Dentro de `app/common`, crie um arquivo chamado `client_secret.json`, que conterá as informações de acesso
 à API do Google Sheets.
+
+### Iniciando o Servidor
+
+Para iniciar o servidor `Flask`, é necessário exportar a seguinte variável de ambiente:
+
+```
+export FLASK_APP=app/api/app.py
+```
+
+E então usar `flask run` para iniciar a aplicação.
