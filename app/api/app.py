@@ -1,7 +1,7 @@
-import os
+import os, json
+from .handler import *
 
-from flask import Flask
-
+from flask import Flask, jsonify
 
 def create_app(test_config=None):
     # create and configure the app
@@ -26,7 +26,8 @@ def create_app(test_config=None):
 
     @app.route('/kpi')
     def index_kpi():
-        return "kpi"
+        data = return_sheet()
+        return jsonify(data)
 
     @app.route('/kpi/<int:id>')
     def show_kpi(id):
