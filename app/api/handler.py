@@ -1,4 +1,4 @@
-import json
+import os, json
 import re
 import yaml
 import gspread
@@ -18,13 +18,15 @@ def return_sheet(format_value='FORMATTED_VALUE'):
         @return: Python dict with data from Sheets API
     """
 
-    with open('../../config.yml') as f:
+    path = os.getcwd()
+    secret_json_path = path + '/app/api/client_secret.json'
+    with open('config.yml') as f:
         config = yaml.safe_load(f)
 
     scope = ['https://spreadsheets.google.com/feeds',
              'https://www.googleapis.com/auth/spreadsheets.readonly']
     creds = ServiceAccountCredentials.from_json_keyfile_name(
-        'client_secret.json', scope)
+        secret_json_path, scope)
     client = gspread.authorize(creds)
 
     # Find a workbook by link and open the first sheet
