@@ -1,19 +1,22 @@
 import json
 import re
+import yaml
+import gspread
+
 from oauth2client.service_account import ServiceAccountCredentials
 from unicodedata import normalize
-
-import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-import config as c
 
 # Suposição que cada requisição so irá executar uma operação
 # Dito isso, Cada operação irá requisitar a api do sheets
 # Retorna objeto com indicadores, valores e metas, formatado ou não
 
-
 def return_sheet(format_value='FORMATTED_VALUE'):
     # use creds to create a client to interact with the Google Drive API
+
+    with open('../../config.yml') as f:
+        config = yaml.safe_load(f)
+
     scope = ['https://spreadsheets.google.com/feeds',
              'https://www.googleapis.com/auth/spreadsheets.readonly']
     creds = ServiceAccountCredentials.from_json_keyfile_name(
@@ -22,7 +25,7 @@ def return_sheet(format_value='FORMATTED_VALUE'):
 
     # Find a workbook by link and open the first sheet
     # Make sure you use the right link here.
-    sheet = client.open_by_url(c.sheets_link).get_worksheet(1)
+    sheet = client.open_by_url(config["sheet_url"]).get_worksheet(1)
 
     # Get values formated or not
     indicadores = sheet.col_values(
