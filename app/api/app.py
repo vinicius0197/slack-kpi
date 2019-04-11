@@ -35,7 +35,8 @@ def create_app(test_config=None):
 
     @app.route('/kpi/<int:id>')
     def show_kpi(id):
-        return "kpi %d" % id
+        data = id_kpi(id)
+        return jsonify(data)
 
     @app.route('/kpi/statistics')
     def index_kpi_statistics():

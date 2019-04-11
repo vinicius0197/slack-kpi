@@ -111,3 +111,8 @@ def match_kpi(name):
 def reach_gols():
     indicadores, values, goals = return_sheet('UNFORMATTED_VALUE')
     return {k: "{:.0%} Concluído".format(v/g) for (k, v, g) in zip(indicadores, values, goals)}
+
+
+def id_kpi(id):
+    data = format_data(*return_sheet())
+    return {k: v for x in data if x["id"] == id for k, v in x.items() if k != "id"}
