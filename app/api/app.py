@@ -25,7 +25,7 @@ def create_app(test_config=None):
 
     @app.route('/kpi')
     def index_kpi():
-        data = return_sheet()
+        data = all_kpi()
         return jsonify(data)
 
     @app.route('/kpi/<int:id>')
