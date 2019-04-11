@@ -12,7 +12,11 @@ from oauth2client.service_account import ServiceAccountCredentials
 # Retorna objeto com indicadores, valores e metas, formatado ou não
 
 def return_sheet(format_value='FORMATTED_VALUE'):
-    # use creds to create a client to interact with the Google Drive API
+    """
+        Use credentials to create a client to interact with the Google Drive API
+
+        @return: Python dict with data from Sheets API
+    """
 
     with open('../../config.yml') as f:
         config = yaml.safe_load(f)
@@ -44,16 +48,24 @@ def return_sheet(format_value='FORMATTED_VALUE'):
 
     return indicadores, values, goals
 
-
-# Função auxiliar remoção de acentos
 def normalize_string(txt):
+    """
+        Helper function to normalize strings
+    """
     return normalize('NFKD', txt).encode('ASCII', 'ignore').decode('ASCII')
 
-
-# Return all kpi's formated
-# Example: [{"id": 0, "Projetos": 12}]
-# Espera sequencia de argumentos: indicadores, values, id, gols*optional
 def format_data(indicadores, values, goals):
+    """
+        Returns all kpi's in a formatted manner.
+
+        Example: [{"id": 0, "Projetos": 12}]
+
+        @indicadores: values returned from API call
+        @values:
+        @goals:
+
+        @return: formatted data
+    """
     # translate to dictionary with index
     cell_tuple = zip(indicadores, values)
     id = range(len(values))
@@ -61,18 +73,22 @@ def format_data(indicadores, values, goals):
     dictionary = [dict(x) for x in zip(cell_tuple, ids)]
     return dictionary
 
-
-# Espera dados NÃO
-# Retorna objeto com todos os indicadores, sem o id
 def all_kpi():
+    """
+        Returns object with all kpi's, without ID
+
+        @return: all KPi data in dict
+    """
     data = format_data(*return_sheet())
     return {k: v for x in data for k, v in x.items() if k != "id"}
 
-
-# Espera fragmento ou nome exato do nome do indicador
-# Retorna todos os indicadores que contem aquele nome ou fragmento
-# Retorna {} caso não tenha nenhum match
 def match_kpi(name):
+    """
+        Returns fragment with exact name of KPI.
+
+        @input: KPI name to be match
+        @return: all KPIS with with given name OR empty {} if no match is found
+    """
     data = format_data(*return_sheet())
     # if data.get(name):
     #    single = {
