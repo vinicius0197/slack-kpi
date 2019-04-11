@@ -28,3 +28,6 @@ export FLASK_APP=app/api/app.py
 ```
 
 E então usar `flask run` para iniciar a aplicação.
+
+### Rodando os testes
+Para rodar os testes, basta usar o comando `pytest` dentro da `root` do repositório.
