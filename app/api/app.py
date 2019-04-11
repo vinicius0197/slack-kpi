@@ -23,7 +23,6 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-
     @app.route('/kpi')
     def index_kpi():
         data = return_sheet()

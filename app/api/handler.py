@@ -46,7 +46,7 @@ def return_sheet(format_value='FORMATTED_VALUE'):
 
 
 # Função auxiliar remoção de acentos
-def remover_acentos(txt):
+def normalize_string(txt):
     return normalize('NFKD', txt).encode('ASCII', 'ignore').decode('ASCII')
 
 
@@ -81,7 +81,7 @@ def match_kpi(name):
     # else:
     #    single = "Indicador não encontrado!"
 
-    return {k: v for x in data for k, v in x.items() if re.search(remover_acentos(name.lower()), remover_acentos(k.lower()))}
+    return {k: v for x in data for k, v in x.items() if re.search(normalize_string(name.lower()), normalize_string(k.lower()))}
 
 
 def reach_gols():
