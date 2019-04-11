@@ -1,7 +1,10 @@
-import os, json
-from .handler import *
+import os
+import json
+from .sheets_handler import *
+from .slack_handler import *
 
 from flask import Flask, jsonify
+
 
 def create_app(test_config=None):
     # create and configure the app
@@ -26,6 +29,8 @@ def create_app(test_config=None):
     @app.route('/kpi')
     def index_kpi():
         data = all_kpi()
+        # print(data)
+        res = task_slack_message(data)
         return jsonify(data)
 
     @app.route('/kpi/<int:id>')
@@ -43,6 +48,5 @@ def create_app(test_config=None):
     def create_job():
         job_name = request.args.get(job_name)
         return job_name
-
 
     return app

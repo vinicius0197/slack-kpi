@@ -1,5 +1,5 @@
 import pytest
-from app.api.handler import *
+from app.api.sheets_handler import *
 
 # Verifica se o numero de indicadores esta correto
 
