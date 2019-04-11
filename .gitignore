@@ -13,3 +13,6 @@ htmlcov/
 dist/
 build/
 *.egg-info/
+
+client_secret.json
+app/common/config.py
