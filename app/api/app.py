@@ -40,7 +40,9 @@ def create_app(test_config=None):
 
     @app.route('/kpi/statistics')
     def index_kpi_statistics():
-        return "statistics"
+        data = reach_gols()
+        res = task_slack_message(data)
+        return jsonify(data)
 
     @app.route('/schedule/', methods=['GET', 'POST'])
     def index_job():
