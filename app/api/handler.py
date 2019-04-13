@@ -23,7 +23,7 @@ def return_sheet(format_value='FORMATTED_VALUE'):
              'https://www.googleapis.com/auth/spreadsheets.readonly']
 
     json_values = os.getenv("JSON_VALUES")
-    json_path = json.loads(json_values)
+    json_path = json.loads(json_values, strict=False)
     creds = ServiceAccountCredentials.from_json_keyfile_dict(json_path, scope)
 
     client = gspread.authorize(creds)
