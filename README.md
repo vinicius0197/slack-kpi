@@ -32,3 +32,18 @@ E então usar `flask run` para iniciar a aplicação.
 
 ### Rodando os testes
 Para rodar os testes, basta usar o comando `pytest` dentro da `root` do repositório.
+
+### Instalando a imagem Docker
+Dentro do repositório do projeto, execute o comando:
+
+```
+docker build -t jarvis:latest .
+```
+O comando acima irá criar uma nova imagem a partir do `Dockerfile`, chamada **jarvis**.
+Para rodar a imagem na porta 5000, é necessário executar o comando:
+
+```
+docker run -d -p 5000:5000 jarvis
+```
+Para a aplicação funcionar, é necessário enviar as variáveis de ambiente `SHEET_URL` e
+`JSON_VALUES` para o container **Docker**.
