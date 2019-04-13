@@ -21,9 +21,7 @@ def return_sheet(format_value='FORMATTED_VALUE'):
 
     path = os.getcwd()
     secret_json_path = path + '/app/common/client_secret.json'
-    with open('config.yml') as f:
-        config = yaml.safe_load(f)
-
+    
     try:
         with open('config.yml') as f:
             config = yaml.safe_load(f)
