@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/vinicius0197/slack-kpi.png?branch=master)](https://travis-ci.org/vinicius0197/slack-kpi)
 ## Iniciando o Projeto
 
 Para rodar esse projeto na sua máquina, você vai precisar do Python 3 instalado. Crie um ambiente 
