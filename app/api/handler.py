@@ -24,6 +24,12 @@ def return_sheet(format_value='FORMATTED_VALUE'):
     with open('config.yml') as f:
         config = yaml.safe_load(f)
 
+    try:
+        with open('config.yml') as f:
+            config = yaml.safe_load(f)
+    except FileNotFoundError:
+        config = os.getenv("SHEET_URL")
+
     scope = ['https://spreadsheets.google.com/feeds',
              'https://www.googleapis.com/auth/spreadsheets.readonly']
 
