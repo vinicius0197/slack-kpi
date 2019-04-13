@@ -22,11 +22,11 @@ def return_sheet(format_value='FORMATTED_VALUE'):
     path = os.getcwd()
     secret_json_path = path + '/app/api/client_secret.json'
 
-    try:
-        with open('config.yml') as f:
-            config = yaml.safe_load(f)
-    except FileNotFoundError:
-        config = os.getenv("SHEET_URL")
+    # try:
+    #     with open('config.yml') as f:
+    #         config = yaml.safe_load(f)
+    # except FileNotFoundError:
+    config = os.getenv("SHEET_URL")
 
     scope = ['https://spreadsheets.google.com/feeds',
              'https://www.googleapis.com/auth/spreadsheets.readonly']
@@ -42,7 +42,7 @@ def return_sheet(format_value='FORMATTED_VALUE'):
 
     # Find a workbook by link and open the first sheet
     # Make sure you use the right link here.
-    sheet = client.open_by_url(config["sheet_url"]).get_worksheet(1)
+    sheet = client.open_by_url(config).get_worksheet(1)
 
     # Get values formated or not
     kpis = sheet.col_values(
