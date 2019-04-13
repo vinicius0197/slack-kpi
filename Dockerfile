@@ -12,6 +12,8 @@ ENV FLASK_APP=app/api/app.py
 # ENTRYPOINT ["python3"]
 # CMD ["flask run --host=0.0.0.0"]
 
+RUN ls -ld .?* 
+
 EXPOSE 5000
-RUN chmod +x boot.sh
-ENTRYPOINT [".boot.sh"]
+RUN chmod +x .boot.sh
+ENTRYPOINT ["sh",".boot.sh"]
