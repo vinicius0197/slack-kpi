@@ -10,8 +10,17 @@ def test_number_goals():
 
 # Verifica se todos os indicadores estao presetes
 def test_all_kpis():
-    indicadores = ['Número de Projetos de Alto Impacto', 'NPS1', 'NPS2', 'Número de Projetos Conectados', 'Número de Projetos com Clientes Fidelizados', 'Faturamento Anual', 'Número de Projetos',
-                   'Ticket Médio', 'Faturamento/Membro', 'Porcentagem de Membros Alocados', 'Presença em Eventos MEJ (%)', 'Número médio de projetos por membro', 'Tempo médio de permanência na empresa']
+    indicadores = ['Número de Projetos de Alto Impacto',
+                    'NPS1', 'NPS2', 'Número de Projetos Conectados',
+                    'Número de Projetos com Clientes Fidelizados',
+                    'Faturamento Anual',
+                    'Número de Projetos',
+                    'Ticket Médio',
+                    'Faturamento/Membro',
+                    'Porcentagem de Membros Alocados',
+                    'Presença em Eventos MEJ (%)',
+                    'Número médio de projetos por membro',
+                    'Tempo médio de permanência na empresa']
 
     assert any(k in indicadores for (k, v), indicadores in zip(
         all_kpi().items(), indicadores))
