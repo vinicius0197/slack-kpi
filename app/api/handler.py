@@ -20,7 +20,7 @@ def return_sheet(format_value='FORMATTED_VALUE'):
     """
 
     path = os.getcwd()
-    secret_json_path = path + '/app/common/client_secret.json'
+    secret_json_path = path + '/app/api/client_secret.json'
 
     try:
         with open('config.yml') as f:
@@ -31,14 +31,12 @@ def return_sheet(format_value='FORMATTED_VALUE'):
     scope = ['https://spreadsheets.google.com/feeds',
              'https://www.googleapis.com/auth/spreadsheets.readonly']
 
-    # try:
-    #     creds = ServiceAccountCredentials.from_json_keyfile_name(
-    #         secret_json_path, scope)
-    # except FileNotFoundError:
+    # creds = ServiceAccountCredentials.from_json_keyfile_name(
+    #     secret_json_path, scope)
+
     json_values = os.getenv("JSON_VALUES")
     json_path = json.loads(json_values)
-    creds = ServiceAccountCredentials.from_json_keyfile_dict(
-        json_path, scope)
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(json_path, scope)
 
     client = gspread.authorize(creds)
 
